@@ -10,3 +10,6 @@ compiled/
 ## API keys ##
 src/config/config.js
 compiled/config/config.js
+
+## Package ##
+package-lock.json
