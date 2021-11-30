@@ -1,10 +1,9 @@
-import exampleVideoData from '../data/exampleVideoData.js';
 import VideoListEntry from './VideoListEntry.js';
 
-var VideoList = () => (
+var VideoList = (props) => (
   <div className="video-list">
-    {exampleVideoData.map(video => (
-      <div><h5><VideoListEntry obj={video}/></h5></div>
+    {props.videos.map(video => (
+      <VideoListEntry obj={video}/>
     ))}
 
   </div>
