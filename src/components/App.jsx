@@ -8,9 +8,22 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      currVideo: exampleVideoData[0]
+      search: props.searchYouTube,
+      storage: [],
+      currVideo: {
+        id: {videoId: ''},
+        src: '',
+        snippet: {title: '', description: ''}
+      }
     };
+
     this.onTitleClick = this.onTitleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      // TODO
+    });
   }
 
   onTitleClick(event) {
@@ -24,7 +37,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <div><h5><em>search</em><Search /></h5></div>
           </div>
         </nav>
         <div className="row">
@@ -32,7 +45,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currVideo} />
           </div>
           <div className="col-md-5">
-            <VideoList videos={exampleVideoData} task={this.onTitleClick}/>
+            <VideoList videos={this.state.storage} task={this.onTitleClick}/>
           </div>
         </div>
       </div>
