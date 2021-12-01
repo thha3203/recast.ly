@@ -15,13 +15,13 @@ class App extends React.Component {
         id: {videoId: ''},
         src: '',
         snippet: {title: '', description: ''}
-      }
+      },
+      query: ''
     };
 
     this.onTitleClick = this.onTitleClick.bind(this);
     this.userInput = this.userInput.bind(this);
   }
-
 
   onTitleClick(event) {
     this.setState({
@@ -30,6 +30,7 @@ class App extends React.Component {
   }
 
   userInput(event) {
+    // Use underscore _.debounce
     this.state.search(event.target.value, (data) => {
       this.setState({storage: data, currVideo: data[0]});
     });
