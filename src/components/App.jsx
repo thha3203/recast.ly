@@ -3,6 +3,7 @@ import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import exampleVideoData from '../data/exampleVideoData.js';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -18,18 +19,29 @@ class App extends React.Component {
     };
 
     this.onTitleClick = this.onTitleClick.bind(this);
+    this.userInput = this.userInput.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      // TODO
-    });
-  }
 
   onTitleClick(event) {
     this.setState({
-      currVideo: exampleVideoData[event.target.id]
+      currVideo: this.state.storage[event.target.id]
     });
+  }
+
+  userInput(event) {
+    this.state.search(event.target.value, (data) => {
+      this.setState({storage: data, currVideo: data[0]});
+    });
+  }
+
+  componentDidMount() {
+    // TODO
+    if (this.state.search) {
+      this.state.search('', (data) => {
+        this.setState({storage: data, currVideo: data[0]});
+      });
+    }
   }
 
   render() {
@@ -37,7 +49,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em><Search /></h5></div>
+            <Search task={this.userInput}/>
           </div>
         </nav>
         <div className="row">
